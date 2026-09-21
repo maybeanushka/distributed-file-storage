@@ -1,4 +1,4 @@
-\# Distributed File Storage System
+# Distributed File Storage System
 
 
 
@@ -6,7 +6,7 @@ A fault-tolerant distributed file storage system that splits files into chunks, 
 
 
 
-\## Architecture
+## Architecture
 
 
 
@@ -14,55 +14,55 @@ Client → Coordinator → Storage Nodes
 
 
 
-\## Planned Features
+## Planned Features
 
 
 
-\- File upload and download
+- File upload and download
 
-\- File chunking
+- File chunking
 
-\- SHA-256 integrity verification
+- SHA-256 integrity verification
 
-\- Multiple storage nodes
+- Multiple storage nodes
 
-\- Data replication
+- Data replication
 
-\- Node health monitoring
+- Node health monitoring
 
-\- Failure detection
+- Failure detection
 
-\- Automatic replica recovery
+- Automatic replica recovery
 
-\- Resumable uploads
+- Resumable uploads
 
-\- File versioning
+- File versioning
 
-\- Storage monitoring dashboard
-
-
-
-\## Tech Stack
+- Storage monitoring dashboard
 
 
 
-\- Next.js
-
-\- TypeScript
-
-\- FastAPI
-
-\- Python
-
-\- PostgreSQL
-
-\- Docker
-
-\- Redis
+## Tech Stack
 
 
 
-\## Status
+- Next.js
+
+- TypeScript
+
+- FastAPI
+
+- Python
+
+- PostgreSQL
+
+- Docker
+
+- Redis
+
+
+
+## Status
 
 
 
