@@ -11,4 +11,10 @@ class FileMetadata(Base):
     size = Column(Integer, nullable=False)
     node_id = Column(String, nullable=False)
     uploaded_at = Column(DateTime, default=datetime.utcnow)
-    
+
+class StorageNode(Base):
+    __tablename__ = "storage_nodes"
+
+    id = Column(String, primary_key=True)
+    url = Column(String, nullable=False)
+    status = Column(String, nullable=False, default="active")

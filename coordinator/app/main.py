@@ -1,4 +1,5 @@
-from fastapi import FastAPI, UploadFile, File
+from fastapi import FastAPI, UploadFile, File, Depends
+from fastapi.responses import Response
 import httpx
 import uuid
 from sqlalchemy.orm import Session
@@ -73,3 +74,45 @@ async def upload_file(
     db.commit()
 
     return response_data
+
+@app.get("/files/{file_id}")
+async def download_file(
+    file_id: str,
+    db: Session = Depends(get_db)
+):
+    file_metadata = db.query(FileMetadata).filter(
+        FileMetadata.id == file_id
+    ).first()
+
+    if not file_metadata:
+        return {"error": "File not found"}
+
+    async with httpx.AsyncClient() as client:
+        response = await client.get(
+            f"{file_metadata.node_id}/files/{file_id}"
+        )
+
+    if response.status_code != 200:
+        return {"error": "File could not be retrieved"}
+
+    return Response(
+        content=response.content,
+        media_type="application/octet-stream",
+        headers={
+            "Content-Disposition": f'attachment; filename="{file_metadata.filename}"'
+        }
+    )
+
+@app.get("/files")
+def list_files(db: Session = Depends(get_db)):
+    files = db.query(FileMetadata).all()
+
+    return [
+        {
+            "file_id": file.id,
+            "filename": file.filename,
+            "size": file.size,
+            "node_id": file.node_id,
+        }
+        for file in files
+    ]

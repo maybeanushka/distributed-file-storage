@@ -3,7 +3,7 @@ from fastapi.responses import FileResponse
 from pathlib import Path
 import shutil
 
-app = FastAPI(title="Distributed Storage Node")
+app = FastAPI(title="Distributed Storage Node 2")
 
 STORAGE_DIR = Path("data")
 STORAGE_DIR.mkdir(exist_ok=True)
