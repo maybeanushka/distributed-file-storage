@@ -18,3 +18,10 @@ class StorageNode(Base):
     id = Column(String, primary_key=True)
     url = Column(String, nullable=False)
     status = Column(String, nullable=False, default="active")
+
+class FileReplica(Base):
+    __tablename__ = "file_replicas"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    file_id = Column(String, nullable=False)
+    node_id = Column(String, nullable=False)

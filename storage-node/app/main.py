@@ -1,4 +1,4 @@
-from fastapi import FastAPI, UploadFile, File, Form
+from fastapi import FastAPI, UploadFile, File, Form, HTTPException
 from fastapi.responses import FileResponse
 from pathlib import Path
 import shutil
@@ -43,3 +43,20 @@ def download_file(file_id: str):
         return {"error": "File not found"}
 
     return FileResponse(file_path)
+
+@app.delete("/files/{file_id}")
+def delete_file(file_id: str):
+    file_path = STORAGE_DIR / file_id
+
+    if not file_path.exists():
+        raise HTTPException(
+            status_code=404,
+            detail="File not found"
+        )
+
+    file_path.unlink()
+
+    return {
+        "file_id": file_id,
+        "status": "deleted"
+    }

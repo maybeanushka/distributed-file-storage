@@ -1,0 +1,13 @@
+cd Downloads/distributed-storage
+cd Downloads\distributed-storage\storage-node
+python -m uvicorn app.main:app --reload --port 9001
+cd Downloads\distributed-storage\storage-node-2
+python -m uvicorn app.main:app --reload --port 9002
+cd Downloads\distributed-storage\coordinator
+python -m uvicorn app.main:app --reload --port 8000
+
+
+git status
+git add .
+git commit -m "msg"
+git push origin main
