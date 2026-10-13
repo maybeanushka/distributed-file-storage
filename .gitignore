@@ -31,7 +31,11 @@ htmlcov/
 
 # Storage data
 storage-data/
+storage-node-2/app/chunks/
+storage-node/app/chunks/
+
 *.db
 
 # Logs
 *.log
+
